@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment Portal</title>
+     <link rel="stylesheet" href="vstylesheet.css">
+     
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="gradient-bg text-white">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f5830758-77f7-4434-8af1-6dc088f23e01.png" alt="GPay-style logo with blue background and white 'G' icon" class="rounded-full">
+                    <h1 class="text-2xl font-bold">GPay</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="bg-white text-indigo-600 px-4 py-2 rounded-full font-medium">Help</button>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d063051a-9d82-4bad-834d-b50c7c6a5e6c.png" alt="User profile picture showing a generic person silhouette with blue background" class="rounded-full border-2 border-white">
+                </div>
+            </div>
+            
+            <div class="mt-8 mb-12">
+                <h2 class="text-3xl font-bold mb-2">Rajkumar Furniture's Bill</h2>
+                <p class="opacity-90">For payments and inquiries: 7776941138</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 -mt-12">
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Quick Actions</h3>
+                <div class="flex space-x-2">
+                    <button id="sendTab" class="px-4 py-2 font-medium tab-active">Send</button>
+                    <button id="receiveTab" class="px-4 py-2 font-medium text-gray-500">Receive</button>
+                </div>
+            </div>
+
+            <!-- Send Payment Form -->
+            <div id="sendForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Recipient</label>
+                    <div class="relative">
+                        <input type="text" placeholder="Email, phone, or PayFlow ID" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button class="absolute right-3 top-3 text-indigo-600 font-medium">Contacts</button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-3 text-gray-500">$</span>
+                        <input type="number" placeholder="0.00" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <div class="absolute right-3 top-3">
+                            <select class="text-gray-700 bg-transparent border-none focus:ring-0">
+                                <option>USD</option>
+                                <option>EUR</option>
+                                <option>GBP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Note (optional)</label>
+                    <input type="text" placeholder="What's this for?" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button class="w-full bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition">Send Payment</button>
+            </div>
+
+            <!-- Receive Payment Form (hidden by default) -->
+            <div id="receiveForm" class="hidden space-y-6">
+                <div class="text-center">
+                    <div class="qr-code inline-block mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fdc28acf-451e-4693-9b5f-72865dd60605.png" alt="QR code for receiving payments with PayFlow branding in the center" class="w-40 h-40">
+                    </div>
+                    <p class="text-sm text-gray-600">Scan this QR code to receive payment</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Request Amount (optional)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-3 text-gray-500">$</span>
+                        <input type="number" placeholder="0.00" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <div class="absolute right-3 top-3">
+                            <select class="text-gray-700 bg-transparent border-none focus:ring-0">
+                                <option>USD</option>
+                                <option>EUR</option>
+                                <option>GBP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-3">
+                    <button class="flex-1 bg-indigo-100 text-indigo-600 py-3 rounded-lg font-medium">Copy Link</button>
+                    <button class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-medium hover:bg-indigo-700 transition">Share</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Transactions -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-800">Recent Transactions</h3>
+                <button class="text-indigo-600 font-medium">View All</button>
+            </div>
+
+            <div class="grid grid-cols-4 gap-4 mb-4">
+                <button class="flex flex-col items-center space-y-2 p-2 rounded-lg hover:bg-gray-50">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/146170cb-8302-4158-a44f-26e07a698e2d.png" alt="Send money icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-sm">Send</span>
+                </button>
+                <button class="flex flex-col items-center space-y-2 p-2 rounded-lg hover:bg-gray-50">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2d9fd7ab-5664-4197-8535-dfe957c0d7fc.png" alt="Request money icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-sm">Request</span>
+                </button>
+                <button class="flex flex-col items-center space-y-2 p-2 rounded-lg hover:bg-gray-50">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/53b67d3f-1d6f-44d1-89b9-783a24cfcbd5.png" alt="Split bill icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-sm">Split</span>
+                </button>
+                <button class="flex flex-col items-center space-y-2 p-2 rounded-lg hover:bg-gray-50" onclick="openScanner()">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/df952c7d-fb12-4c06-9043-806730d55e7a.png" alt="QR scanner icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-sm">Scan</span>
+                </button>
+                <button class="flex flex-col items-center space-y-2 p-2 rounded-lg hover:bg-gray-50">
+                    <div class="bg-blue-100 p-3 rounded-full">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/23073ca9-01e5-49a7-9ad9-3b986f256862.png" alt="View transactions icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-sm">History</span>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <!-- Sample Transaction 1 -->
+                <div class="transaction-card p-4 border border-gray-200 rounded-lg transition cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3fd8c738-82c6-42f5-a59a-10d8b912af6b.png" alt="Amazon logo icon with orange background" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <p class="font-medium">Amazon Purchase</p>
+                                <p class="text-sm text-gray-500">June 12, 2023</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-red-600">-$49.99</p>
+                            <p class="text-sm text-gray-500">Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Transaction 2 -->
+                <div class="transaction-card p-4 border border-gray-200 rounded-lg transition cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-green-100 p-3 rounded-full">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f87df0b6-2380-4d4d-ba07-df6567a46560.png" alt="User profile icon with green background representing payment received" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <p class="font-medium">John Smith</p>
+                                <p class="text-sm text-gray-500">June 10, 2023</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-green-600">+$120.00</p>
+                            <p class="text-sm text-gray-500">Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Transaction 3 -->
+                <div class="transaction-card p-4 border border-gray-200 rounded-lg transition cursor-pointer">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-blue-100 p-3 rounded-full">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4193d9f9-f02c-42b3-b65f-09957759c0de.png" alt="Netflix logo icon with red background" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <p class="font-medium">Netflix Subscription</p>
+                                <p class="text-sm text-gray-500">June 5, 2023</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-medium text-red-600">-$14.99</p>
+                            <p class="text-sm text-gray-500">Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-8 right-8">
+        <button class="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/712b282b-8840-4cb9-8cf1-dc141ce7f7c3.png" alt="Add payment action" class="w-6 h-6">
+        </button>
+    </div>
+    <!-- Scanner Modal -->
+    <div id="scannerModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden">
+        <div class="relative w-full h-full">
+            <button onclick="closeScanner()" class="absolute top-4 right-4 bg-white rounded-full p-2 z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="w-full h-4/5 flex flex-col items-center justify-center">
+                <div class="bg-white p-4 rounded-lg mb-4 w-64">
+                    <p class="text-center">Center the QR code in the frame</p>
+                </div>
+                <div id="scannerContainer" class="w-full max-w-md h-64 border-4 border-white rounded-lg overflow-hidden">
+                    <video id="scannerVideo" class="w-full h-full object-cover"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="v.js"></script>
+</body>
+</html>
